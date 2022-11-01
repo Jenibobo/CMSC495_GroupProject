@@ -14,17 +14,18 @@ def index(request):
         # source contain json data from api
 
         source = urllib.request.urlopen(
-            'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=48a90ac42caa09f90dcaeee4096b9e53').read()
+            'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=48a90ac42caa09f90dcaeee4096b9e53&units=imperial').read()
 
         # converting json data to dictionary
 
         list_of_data = json.loads(source)
+        print(list_of_data)
 
         # data for variable list_of_data
         data = {
             "country_code": str(list_of_data['sys']['country']),
             "coordinate": str(list_of_data['coord']['lon']) + ' ' + str(list_of_data['coord']['lat']),
-            "temp": str(list_of_data['main']['temp']) + 'k',
+            "temp": str(list_of_data['main']['temp']) + u'\N{DEGREE SIGN}' + 'F',
             "pressure": str(list_of_data['main']['pressure']),
             "humidity": str(list_of_data['main']['humidity']),
         }
