@@ -1,0 +1,33 @@
+* {
+    background-color: slategray;
+}
+
+button {
+    margin: 10px;
+    padding: 2px;
+    background-color: lightgray;
+}
+
+input {
+    background-color: lightgrey;
+}
+
+.containers {
+    color: aliceblue;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    margin: 25px;
+}
+
+
+#weather_container {}
+
+#current_weather {
+    margin: 25px;
+}
+
+
+#news_container {}
+
+
+#calendr_container {}

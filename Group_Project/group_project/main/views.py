@@ -1,10 +1,9 @@
+from datetime import date
 from django.shortcuts import render
-# import json to load json data to python dictionary
-import json
-# urllib.request to make a request to api
 import urllib.request
+import json
 
-
+# Create your views here.
 def index(request):
     if request.method == 'POST':
         city = request.POST['city']
@@ -12,12 +11,12 @@ def index(request):
             place api_key in place of appid="your api_key here "  '''
 
         # source contain json data from api
-
         source = urllib.request.urlopen(
-            'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=48a90ac42caa09f90dcaeee4096b9e53&units=imperial').read()
+            'http://api.openweathermap.org/data/2.5/weather?q=' + 
+            city + 
+            '&appid=48a90ac42caa09f90dcaeee4096b9e53&units=imperial').read()
 
-        # converting json data to dictionary
-
+        # JSON data to dictionary
         list_of_data = json.loads(source)
         print(list_of_data)
 
@@ -28,8 +27,10 @@ def index(request):
             "temp": str(list_of_data['main']['temp']) + u'\N{DEGREE SIGN}' + 'F',
             "pressure": str(list_of_data['main']['pressure']),
             "humidity": str(list_of_data['main']['humidity']),
+            "name": str(list_of_data['name']),
+            "discrpition": str(list_of_data['weather'][0]['description']),
+            "icon": str(list_of_data['weather'][0]['icon']),
         }
-        print(data)
     else:
         data={}
-    return render(request, "main/index.html",data)
+    return render(request, "index.html", data)
