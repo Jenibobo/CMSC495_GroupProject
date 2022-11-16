@@ -1,12 +1,10 @@
-from datetime import date
 from django.shortcuts import render
 from django.core.exceptions import SuspiciousOperation
 import urllib.request
 import json
 
-
 # Create your views here.
-def weather(request):
+def current_weatherView(request):
     if request.method == 'POST':
         city = request.POST['city']
         ''' api key might be expired use your own api_key
@@ -21,7 +19,7 @@ def weather(request):
         # JSON data to dictionary
         try:
             list_of_data = json.loads(source)
-            print(list_of_data)
+            # print(list_of_data)
 
             data = {
                 "country_code": str(list_of_data['sys']['country']),
@@ -31,9 +29,10 @@ def weather(request):
                 "name": str(list_of_data['name']),
                 "discrpition": str(list_of_data['weather'][0]['description']),
                 "icon": str(list_of_data['weather'][0]['icon']),
-        }
+            }
+            
         except ValueError:
             raise SuspiciousOperation('Invailid JSON')
     else:
         data={}
-    return render(request, "index.html", data)
+    return render(request, "weather.html", data)

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Information App </title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body>
+        <div>
+            <!-- {% block weather %}{% include 'weather.html' %}{% endblock %} -->
+            <a href="/homeapp/weather/">Get Weather</a>
+        </div>
+        <div>
+
+            <!-- {% block todo %}{% include 'todo.html' %}{% endblock %} -->
+            <a href="/homeapp/todos/"> My To-Do List</a>
+        </div>
+    </body>
+
+</html>

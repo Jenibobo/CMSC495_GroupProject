@@ -1,0 +1,25 @@
+{% load static %}
+<div class="containers" id="weather_container">
+    <a href="/homeapp/">Return Home</a>
+    <a href="/homeapp/todos">My To-Do List</a>
+    <center>
+        <h3>Weather</h3>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="Search">
+                <button type="submit">Submit</button>
+        </form>
+        <div>
+        {% if temp and humidity and name%}
+        <div id="current_weather">
+            <h4>Current Weather for {{name}}</h4>
+            <br/>
+            <img src="http://openweathermap.org/img/w/{{icon}}.png" width="100px" />
+            <h5>{{discrpition}}</h5>
+            <h5>Temperature : {{temp}}</h5>
+            <h5>Humidity : {{humidity}}</h5>
+        </div>
+        {% endif %}
+        </div>
+    </center>
+</div>

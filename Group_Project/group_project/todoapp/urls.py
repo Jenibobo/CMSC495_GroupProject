@@ -17,14 +17,10 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
-# from homeapp.views import  current_weatherView, index, todoappView, add_todoView, deleteTodoView
+from . import views as todo_views
 
 urlpatterns = [
-    path('homeapp/', include('homeapp.urls')),
-    path('admin/', admin.site.urls),
-    # path('homeapp/', index, name='index'),
-    # path('homeapp/', current_weatherView),
-    # path('homeapp/', todoappView),
-    # path('addTodoItem/',add_todoView),
-    # path('deleteTodoItem/<int:i>/', deleteTodoView),
+    path('', todo_views.todoappView),
+    path('addTodoItem/',todo_views.add_todoView),
+    path('deleteTodoItem/<int:i>/', todo_views.deleteTodoView)
 ]
