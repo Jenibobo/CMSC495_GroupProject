@@ -22,6 +22,7 @@ from django.urls import include, path
 urlpatterns = [
     path('homeapp/', include('homeapp.urls')),
     path('admin/', admin.site.urls),
+    path('login/',include('loginapp.urls'))
     # path('homeapp/', index, name='index'),
     # path('homeapp/', current_weatherView),
     # path('homeapp/', todoappView),

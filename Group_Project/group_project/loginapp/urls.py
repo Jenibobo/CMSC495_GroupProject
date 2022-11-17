@@ -17,11 +17,11 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
-from . import views
+from . import views as login_views
+
 
 urlpatterns = [
-    path('', views.index),
-    path('todos/', include('todoapp.urls')),
-    path('weather/', include('weatherapp.urls')),
-    path('login/', include('loginapp.urls')),
+    path('',login_views.loginView),
 ]
+
+
