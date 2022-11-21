@@ -20,7 +20,7 @@ from django.urls import include, path
 from . import views as todo_views
 
 urlpatterns = [
-    path('', todo_views.todoappView),
+    path('', todo_views.todoappView, name="todo"),
     path('addTodoItem/',todo_views.add_todoView),
     path('deleteTodoItem/<int:i>/', todo_views.deleteTodoView)
 ]

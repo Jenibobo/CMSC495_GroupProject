@@ -1,9 +1,11 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
+
 from . models import TodoListItem
 
 # Create your views here.
+
 def todoappView(request):
     all_todo_items = TodoListItem.objects.all()
     todos = {

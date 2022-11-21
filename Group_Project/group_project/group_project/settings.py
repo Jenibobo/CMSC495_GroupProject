@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'todoapp',
     'weatherapp',
     'loginapp',
+    'registerapp',
 ]
 
 MIDDLEWARE = [
