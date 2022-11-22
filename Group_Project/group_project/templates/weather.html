@@ -1,72 +1,86 @@
 {% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Weather </title>
+    </head>
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
-<nav>
-<a href="/homeapp/">Return Home</a>
-    <a href="/homeapp/todos">My To-Do List</a>
-    {% if user.is_authenticated %}
-    <a href="/homeapp/logout/">Logout</a>
-   <center> <h3> Hello, {{user.first_name}} </h3></center>
-    {% else %}
-    <a href="/homeapp/register/"> Sign Up</a>
-    <a href="/homeapp/login/"> Login</a>
-    {% endif %}
-    <a style="margin: 20px" href="/homeapp/">Go Home</a>
-    <a style="margin: 20px" href="/homeapp/todos/"> My To-Do List</a>
-    <a style="float: right;" href="/homeapp/login/"> Login</a>
-</nav>
-
-<div class="containers" id="weather_container">
-    <center>
-        <h3>Current Weather</h3>
-        <form method="post">
-            {% csrf_token %}
-            <input type="text" name="city" placeholder="Search">
-                <button type="submit">Submit</button>
-        </form>
-        <div>
-        {% if temp and humidity and name%}
-            <div id="current_weather">
-                <h4>Current Weather for {{name}}</h4>
-                <br/>
-                <img src="http://openweathermap.org/img/w/{{icon}}.png" width="100px" />
-                <h5>{{discrpition}}</h5>
-                <h5>Temperature : {{temp}}</h5>
-                <h5>Humidity : {{humidity}}</h5>
-            </div>
+    <nav>
+        <a style="margin: 20px" href="/homeapp/">Return Home</a>
+        {% if user.is_authenticated %}
+            <a style="margin: 20px" href="/homeapp/todos">My To-Do List</a>
+            <a style="float: right" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+        <div id="login_logout">
+            <a style="margin: 20px" href="/homeapp/login/"> Login</a>
+            <a style="margin: 20px" href="/homeapp/register/"> Sign Up</a>
+        </div>
         {% endif %}
-    </center>
-</div>
+    </nav>
 
-{% if name %}
-<div class="containers" id="weather_forecast">
+    <hr/>
+
+    <div id="user_greeting">
+        {% if user.is_authenticated %}
         <center>
-        <h2>5 Day Forecast</h2>
-        <hr/>
-        <br/>
-        {% for key, values in forecast.items %}
-        <table>
+            <h3> Hello, {{user.first_name}} </h3>
+        </center>
+        {% endif %}
+    </div>
+
+    <div class="containers" id="weather_container">
+        <center>
+            <h3>Current Weather</h3>
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" name="city" placeholder="Search">
+                    <button type="submit">Submit</button>
+            </form>
+            <div>
+            {% if temp and humidity and name%}
+                <div id="current_weather">
+                    <h4>Current Weather for {{name}}</h4>
+                    <br/>
+                    <img src="http://openweathermap.org/img/w/{{icon}}.png" width="100px" />
+                    <h5>{{discrpition}}</h5>
+                    <h5>Temperature : {{temp}}</h5>
+                    <h5>Humidity : {{humidity}}</h5>
+                </div>
+            {% endif %}
+        </center>
+    </div>
+
+    {% if name %}
+    <div class="containers" id="weather_forecast">
             <center>
-                <thead><h3 style="text-decoration: underline;"><b>{{key}}</b></h3></thead>
-            </center>
-            <tr>
-                <th><b>Time</b> </th>
-                <th><b>Condition</b> </th>
-                <th><b>Low</b> </th>
-                <th><b>High</b> </th>
-            </tr>
-            
-            {% for value in values %}
+            <h2>5 Day Forecast</h2>
+            <hr/>
+            <br/>
+            {% for key, values in forecast.items %}
+            <table>
+                <center>
+                    <thead><h3 style="text-decoration: underline;"><b>{{key}}</b></h3></thead>
+                </center>
                 <tr>
-                    <td> {{value.time}}</td>
-                    <td> {{value.conditions}}</td>
-                    <td> {{value.low}} &#176F</td>
-                    <td> {{value.high}} &#176F</td>
+                    <th><b>Time</b> </th>
+                    <th><b>Condition</b> </th>
+                    <th><b>Low</b> </th>
+                    <th><b>High</b> </th>
                 </tr>
-            {% endfor %} 
-        {% endfor %}
-        </table>
-    </center>
-</div>
-{% endif %}
+                
+                {% for value in values %}
+                    <tr>
+                        <td> {{value.time}}</td>
+                        <td> {{value.conditions}}</td>
+                        <td> {{value.low}} &#176F</td>
+                        <td> {{value.high}} &#176F</td>
+                    </tr>
+                {% endfor %} 
+            {% endfor %}
+            </table>
+        </center>
+    </div>
+    {% endif %}
+</html>

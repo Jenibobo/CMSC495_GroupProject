@@ -1,6 +1,6 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import auth
@@ -24,3 +24,7 @@ def loginView(request):
     context = {'form': form}
     return render(request, 'login.html', context)
 
+# def logout_view(request):
+#     logout(request)
+#     messages.info(request, "Logged out successfully")
+#     return redirect(request, "base.html")

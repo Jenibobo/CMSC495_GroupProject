@@ -2,37 +2,40 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title> To-Do</title>
+    <title> To-Do </title>
     </head>
         
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <nav>
       {% if user.is_authenticated %}
-        <a href="/homeapp/">Return Home</a>
-        <a href="/homeapp/weather">Get Weather</a>
-        <a href="/homeapp/logout"> Log Out</a>
+        <a style="margin: 20px" href="/homeapp/">Return Home</a>
+        <a style="margin: 20px" href="/homeapp/weather">Get Weather</a>
+        <a style="float: right" href="{% url 'logout' %}">Logout</a>
     </nav>
+    <hr/>
     
     <body>
       <h3>Welcome, {{ request.user.first_name }}!</h3>
       <div class="containers" id="todo_container">
-          <h3> My To-Do's</h3>
-          <form action="addTodoItem/" method="post">
-              {% csrf_token %}
-              <input type="text" name="content">
-              <input type="submit" value="Add Todo">
-          </form> 
-          <ul>
-              {% for i in all_items %} 
-              <li>{{i.content}}
-                  <form action="deleteTodoItem/{{i.id}}/" method = "post">
-                      {% csrf_token %}
-                      <input type="submit" value="Delete">
-                  </form>
-              </li>
-              {% endfor %}
-          </ul>                    
-      </div>
+        <center>
+            <h3> My To-Do's</h3>
+            <form action="addTodoItem/" method="post">
+                {% csrf_token %}
+                <input type="text" name="content">
+                <input type="submit" value="Add Todo">
+            </form> 
+            <ul>
+                {% for i in all_items %} 
+                <li>{{i.content}}
+                    <form action="deleteTodoItem/{{i.id}}/" method = "post">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete">
+                    </form>
+               </li>
+                {% endfor %}
+            </ul>  
+          </center>                  
+        </div>
     {% else %}
     <P>Please log in</P>
     {% endif %}

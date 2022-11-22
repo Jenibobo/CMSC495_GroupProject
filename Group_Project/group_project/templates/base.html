@@ -9,23 +9,27 @@
 
     <nav>
         <a style="margin: 20px" href="/homeapp/weather/">Get Weather</a>
-        <a style="margin: 20px" href="/homeapp/todos/"> My To-Do List</a>
-        <div>
-           {% if user.is_authenticated %}
-            Hello, {{user.first_name}}
-            <a href="/homeapp/logout/">Logout</a>
-            {% else %}
-            <a href="/homeapp/login/"> Login</a>
-            <br>
-            <a style="float: right;" href="/homeapp/register/"> Sign Up</a>
-            {% endif %}
-         </div>
+        {% if user.is_authenticated %}
+            <a style="margin: 20px" href="/homeapp/todos/"> My To-Do List</a>
+            <a style="float: right" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <div id="login_logout">
+                <a style="margin: 20px" href="/homeapp/login/"> Login</a>
+                <a style="margin: 20px" href="/homeapp/register/"> Sign Up</a>
+            </div>
+        {% endif %}
     </nav>
 
     <body>
         <hr>
         <center><h2 style="color: whitesmoke"> Weather App </h2></center>
         <hr>
+
+        <div id="user_greeting">
+            {% if user.is_authenticated %}
+                <h2>Hello, {{user.first_name}}</h2>
+            {% endif %}
+        </div>
 
         <div id="about_container" class="containers">
             <h3 style="text-decoration: underline;"> About the App </h3>
