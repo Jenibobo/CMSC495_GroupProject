@@ -20,5 +20,5 @@ from django.urls import include, path
 from . import views as weather_views
 
 urlpatterns = [
-    path('', weather_views.current_weatherView)
+    path('', weather_views.current_weatherView, name="weather"),
 ]

@@ -10,11 +10,19 @@
     <nav>
         <a style="margin: 20px" href="/homeapp/weather/">Get Weather</a>
         <a style="margin: 20px" href="/homeapp/todos/"> My To-Do List</a>
-        <a style="float: right;" href="/homeapp/login/"> Login</a>
+        <div>
+           {% if user.is_authenticated %}
+            Hello, {{user.first_name}}
+            <a href="/homeapp/logout/">Logout</a>
+            {% else %}
+            <a href="/homeapp/login/"> Login</a>
+            <br>
+            <a style="float: right;" href="/homeapp/register/"> Sign Up</a>
+            {% endif %}
+         </div>
     </nav>
 
     <body>
-
         <hr>
         <center><h2 style="color: whitesmoke"> Weather App </h2></center>
         <hr>
@@ -31,7 +39,6 @@
                 users to search for weather information based on cities worldwide and returns 
                 the necessary weather information for those cities.  
             </p>
-
         </div>
     </body>
 
