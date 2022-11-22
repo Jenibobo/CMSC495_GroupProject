@@ -7,19 +7,22 @@ import json
 def current_weatherView(request):
     if request.method == 'POST':
         city = request.POST['city']
-        ''' api key might be expired use your own api_key
-            place api_key in place of appid="your api_key here "  '''
+        # state = request.POST['state']
 
-        # current weather source containing json data from api
+        # The apis are requesting data for weather, and returned in a JSON 
+        # format.
+
+        # current weather 
         current = urllib.request.urlopen(
             'http://api.openweathermap.org/data/2.5/weather?q=' + 
-            city + 
+            city +
             '&appid=48a90ac42caa09f90dcaeee4096b9e53&units=imperial').read()
 
+        # forecasted weather for the next 5 days every 3 hours
         forecast = urllib.request.urlopen(
-            'http://api.openweathermap.org/data/2.5/forecast?q=' + 
+            'http://api.openweathermap.org/data/2.5/forecast/?q=' + 
             city + 
-            '&appid=48a90ac42caa09f90dcaeee4096b9e53&cnt=5&units=imperial').read()
+            '&appid=48a90ac42caa09f90dcaeee4096b9e53&units=imperial').read()
 
 
         # JSON data to dictionary
@@ -27,17 +30,24 @@ def current_weatherView(request):
             current_w_data = json.loads(current)
             forecast_w_data = json.loads(forecast)
 
-            # print(forecast_w_data)
-            for i in forecast_w_data['list']:
-                print(i['dt_txt'])
-                print(i['main']['temp_min'])
-                print(i['main']['temp_max'])
-                print(i['weather'][0]['description'])
-                print(i['weather'][0]['icon'])
-                print('\n')
+            forecast_weather = []
+            daily_forecast = []
 
-                # date_day = i['dt_txt']
-            
+            for i in forecast_w_data['list']:
+                day = i['dt_txt'].split(' ')
+
+                # forecast_data = {
+                #     "day": day[0]
+                #     # "time": day[1],
+                #     # "description": i['weather'][0]['main'],
+                #     # "low": i['main']['temp_min'],
+                #     # "high": i['main']['temp_max']
+                # }
+                if day[0] not in forecast_weather:
+                    forecast_weather.append(day[0])
+
+            print(json.dumps(forecast_weather, indent=4))
+
             data = {
                 "country_code": str(current_w_data['sys']['country']),
                 "coordinate": str(current_w_data['coord']['lon']) + ' ' + str(current_w_data['coord']['lat']),
