@@ -1,6 +1,9 @@
 {% load static %}
-<div class="containers" id="weather_container">
-    <a href="/homeapp/">Return Home</a>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+<nav>
+<a href="/homeapp/">Return Home</a>
     <a href="/homeapp/todos">My To-Do List</a>
     {% if user.is_authenticated %}
     <a href="/homeapp/logout/">Logout</a>
@@ -9,8 +12,14 @@
     <a href="/homeapp/register/"> Sign Up</a>
     <a href="/homeapp/login/"> Login</a>
     {% endif %}
+    <a style="margin: 20px" href="/homeapp/">Go Home</a>
+    <a style="margin: 20px" href="/homeapp/todos/"> My To-Do List</a>
+    <a style="float: right;" href="/homeapp/login/"> Login</a>
+</nav>
+
+<div class="containers" id="weather_container">
     <center>
-        <h3>Weather</h3>
+        <h3>Current Weather</h3>
         <form method="post">
             {% csrf_token %}
             <input type="text" name="city" placeholder="Search">
@@ -18,15 +27,46 @@
         </form>
         <div>
         {% if temp and humidity and name%}
-        <div id="current_weather">
-            <h4>Current Weather for {{name}}</h4>
-            <br/>
-            <img src="http://openweathermap.org/img/w/{{icon}}.png" width="100px" />
-            <h5>{{discrpition}}</h5>
-            <h5>Temperature : {{temp}}</h5>
-            <h5>Humidity : {{humidity}}</h5>
-        </div>
+            <div id="current_weather">
+                <h4>Current Weather for {{name}}</h4>
+                <br/>
+                <img src="http://openweathermap.org/img/w/{{icon}}.png" width="100px" />
+                <h5>{{discrpition}}</h5>
+                <h5>Temperature : {{temp}}</h5>
+                <h5>Humidity : {{humidity}}</h5>
+            </div>
         {% endif %}
-        </div>
     </center>
 </div>
+
+{% if name %}
+<div class="containers" id="weather_forecast">
+        <center>
+        <h2>5 Day Forecast</h2>
+        <hr/>
+        <br/>
+        {% for key, values in forecast.items %}
+        <table>
+            <center>
+                <thead><h3 style="text-decoration: underline;"><b>{{key}}</b></h3></thead>
+            </center>
+            <tr>
+                <th><b>Time</b> </th>
+                <th><b>Condition</b> </th>
+                <th><b>Low</b> </th>
+                <th><b>High</b> </th>
+            </tr>
+            
+            {% for value in values %}
+                <tr>
+                    <td> {{value.time}}</td>
+                    <td> {{value.conditions}}</td>
+                    <td> {{value.low}} &#176F</td>
+                    <td> {{value.high}} &#176F</td>
+                </tr>
+            {% endfor %} 
+        {% endfor %}
+        </table>
+    </center>
+</div>
+{% endif %}

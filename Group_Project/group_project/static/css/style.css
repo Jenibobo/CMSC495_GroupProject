@@ -1,4 +1,4 @@
-* {
+body {
     background-color: slategray;
 }
 
@@ -12,22 +12,54 @@ input {
     background-color: lightgrey;
 }
 
+table, td, th {
+    color: whitesmoke;
+}
+
+td {
+    padding-right: 25px;
+}
+
+th {
+    padding-bottom: 5px;
+}
+
+#table_dates {
+    margin-top: 30px;
+    margin-bottom: 0;
+    text-decoration: underline;
+}
+
 .containers {
-    color: aliceblue;
+    color: whitesmoke;
+}
+
+#about_container {
+    color: whitesmoke;
+    padding: 20px;
+}
+
+#weather_container {
     border: 1px solid whitesmoke;
     border-radius: 5px;
     margin: 25px;
 }
 
-
-#weather_container {}
-
 #current_weather {
     margin: 25px;
 }
 
+#weather_forecast {
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    margin: 25px;
+}
 
-#news_container {}
+/* #news_container {} */
 
 
-#calendr_container {}
+#todo_container {
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    margin: 25px;
+}

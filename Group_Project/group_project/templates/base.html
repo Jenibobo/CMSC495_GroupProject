@@ -7,25 +7,38 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     </head>
 
-    <body>
+    <nav>
+        <a style="margin: 20px" href="/homeapp/weather/">Get Weather</a>
+        <a style="margin: 20px" href="/homeapp/todos/"> My To-Do List</a>
         <div>
-            <!-- {% block weather %}{% include 'weather.html' %}{% endblock %} -->
-            <a href="/homeapp/weather/">Get Weather</a>
-        </div>
-        <div>
-
-            <!-- {% block todo %}{% include 'todo.html' %}{% endblock %} -->
-            <a href="/homeapp/todos/"> My To-Do List</a>
-        </div>
-        <div>
-            {% if user.is_authenticated %}
+           {% if user.is_authenticated %}
             Hello, {{user.first_name}}
             <a href="/homeapp/logout/">Logout</a>
             {% else %}
             <a href="/homeapp/login/"> Login</a>
             <br>
-            <a href="/homeapp/register/"> Sign Up</a>
+            <a style="float: right;" href="/homeapp/register/"> Sign Up</a>
             {% endif %}
+         </div>
+    </nav>
+
+    <body>
+        <hr>
+        <center><h2 style="color: whitesmoke"> Weather App </h2></center>
+        <hr>
+
+        <div id="about_container" class="containers">
+            <h3 style="text-decoration: underline;"> About the App </h3>
+            <p>
+                In today's world, the climate has become a big issue for human beings; 
+                because of an adverse climate change, the weather keeps changing constantly. 
+                Too hot or cold weather becomes an obstacle for people to lead their daily 
+                routines. Therefore, people must be able to check the weather before leaving 
+                their homes. To address people's concerns about the weather, this group 
+                created a weather app to show updated weather on time. The weather app enables
+                users to search for weather information based on cities worldwide and returns 
+                the necessary weather information for those cities.  
+            </p>
         </div>
     </body>
 
