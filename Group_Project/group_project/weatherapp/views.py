@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render
 from django.core.exceptions import SuspiciousOperation
 import urllib.request
@@ -30,24 +31,36 @@ def current_weatherView(request):
             current_w_data = json.loads(current)
             forecast_w_data = json.loads(forecast)
 
-            forecast_weather = []
-            daily_forecast = []
+            forecast_weather = {}
+            date_format = "%A %b %d %Y"
+            time_format = "%I %p"
 
             for i in forecast_w_data['list']:
                 day = i['dt_txt'].split(' ')
 
-                # forecast_data = {
-                #     "day": day[0]
-                #     # "time": day[1],
-                #     # "description": i['weather'][0]['main'],
-                #     # "low": i['main']['temp_min'],
-                #     # "high": i['main']['temp_max']
-                # }
-                if day[0] not in forecast_weather:
-                    forecast_weather.append(day[0])
+                # Turning date into date obj to change format that will be 
+                # displayed.
+                date_obj = datetime.strptime(day[0], "%Y-%m-%d").date()
+                forecast_date = date_obj.strftime(date_format)
 
-            print(json.dumps(forecast_weather, indent=4))
+                # # Turning time into time obj to change format that will be 
+                # # displayed.
+                time_obj = datetime.strptime(day[1], "%H:%M:%S").time()
 
+
+                details = {
+                        "time": time_obj.strftime(time_format),
+                        "conditions": i['weather'][0]['main'],
+                        "low": i['main']['temp_min'],
+                        "high": i['main']['temp_max']
+                }
+
+                if forecast_date in forecast_weather:
+                    forecast_weather[forecast_date].append(details)
+                else:
+                    forecast_weather.update({forecast_date:[details]})
+            
+            
             data = {
                 "country_code": str(current_w_data['sys']['country']),
                 "coordinate": str(current_w_data['coord']['lon']) + ' ' + str(current_w_data['coord']['lat']),
@@ -57,6 +70,7 @@ def current_weatherView(request):
                 "discrpition": str(current_w_data['weather'][0]['description']),
                 "icon": str(current_w_data['weather'][0]['icon']),                
             }
+            data['forecast'] = forecast_weather
             
         except ValueError:
             raise SuspiciousOperation('Invailid JSON')

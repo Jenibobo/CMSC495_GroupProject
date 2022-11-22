@@ -1,8 +1,13 @@
 {% load static %}
-<center>
-    <a href="/homeapp/">Return Home</a>
-    <a href="/homeapp/weather">Get Weather</a>
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
+<nav>
+    <a style="margin: 20px" href="/homeapp/">Go Home</a>
+    <a style="margin: 20px" href="/homeapp/weather/">Get Weather</a>
+    <a style="float: right;" href="/homeapp/login/"> Login</a>
+</nav>
+
+<center>
     <div class="containers" id="todo_container">
         <h3> My To-Do's</h3>
 

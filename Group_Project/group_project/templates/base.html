@@ -7,20 +7,31 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     </head>
 
+    <nav>
+        <a style="margin: 20px" href="/homeapp/weather/">Get Weather</a>
+        <a style="margin: 20px" href="/homeapp/todos/"> My To-Do List</a>
+        <a style="float: right;" href="/homeapp/login/"> Login</a>
+    </nav>
+
     <body>
-        <div>
-            <!-- {% block weather %}{% include 'weather.html' %}{% endblock %} -->
-            <a href="/homeapp/weather/">Get Weather</a>
-        </div>
-        <div>
 
-            <!-- {% block todo %}{% include 'todo.html' %}{% endblock %} -->
-            <a href="/homeapp/todos/"> My To-Do List</a>
-        </div>
-        <div>
+        <hr>
+        <center><h2 style="color: whitesmoke"> Weather App </h2></center>
+        <hr>
 
-            <!-- {% block login %}{% include 'login.html' %}{% endblock %} -->
-            <a href="/homeapp/login/"> Login</a>
+        <div id="about_container" class="containers">
+            <h3 style="text-decoration: underline;"> About the App </h3>
+            <p>
+                In today's world, the climate has become a big issue for human beings; 
+                because of an adverse climate change, the weather keeps changing constantly. 
+                Too hot or cold weather becomes an obstacle for people to lead their daily 
+                routines. Therefore, people must be able to check the weather before leaving 
+                their homes. To address people's concerns about the weather, this group 
+                created a weather app to show updated weather on time. The weather app enables
+                users to search for weather information based on cities worldwide and returns 
+                the necessary weather information for those cities.  
+            </p>
+
         </div>
     </body>
 
