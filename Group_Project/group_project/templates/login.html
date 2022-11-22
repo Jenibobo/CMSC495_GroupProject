@@ -4,26 +4,27 @@
     <head>
         <title> Log In </title>
         <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
-=======
     </head>
      <nav>
-    <a style="margin: 20px" href="/homeapp/">Go Home</a>
-    <a style="margin: 20px" href="/homeapp/weather/">Get Weather</a>
-    <a style="margin: 20px" href="/homeapp/todos/"> My To-Do List</a>
+        <a style="margin: 20px" href="/homeapp/">Return Home</a>
+        <a style="margin: 20px" href="/homeapp/weather/">Get Weather</a>
     </nav>
+
+    <hr/>
+
     <body>
-
-      <h3>Log In</h3>
-      <form action="" method="POST">
-          {% csrf_token %}
-      {% for field in form %}
-          <div>
-              <p> {{ field }}</p> 
-          </div>
-      {% endfor %}
-      <button type="submit">Log In</button>
-      <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
-
-      </form>
+        <div class="containers">
+            <h3>Log In</h3>
+            <form action="" method="POST">
+                {% csrf_token %}
+            {% for field in form %}
+                <div>
+                    <p> {{ field }}</p> 
+                </div>
+            {% endfor %}
+            <button type="submit">Log In</button>
+            <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
+            </form>
+        </div>
     </body>
 </html>
