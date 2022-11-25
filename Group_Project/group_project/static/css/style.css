@@ -1,4 +1,6 @@
-
+body {
+    background-color: slategray;
+}
 button {
     margin: 10px;
     padding: 2px;
