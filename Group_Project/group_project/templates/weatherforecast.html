@@ -1,7 +1,5 @@
 {% load static %}
-<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Forecastt</title>
      <link rel="stylesheet" style="text/css" href="{% static 'css/style.css'%}">
@@ -35,7 +33,7 @@
                 <input type="text" name="city" placeholder="Search">
               <button type="submit">Submit</button>
             </form>
-
+ {% if city_name %}
     <div id="forcastContainer">
         <div>
             <h1 id="forcast_header">Five days forcast : City - {{city_name}}</h1>
@@ -74,5 +72,6 @@
             </div>
         </div>
     </div>
+  {% endif %}
 </body>
 </html>
