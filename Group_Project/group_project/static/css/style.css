@@ -65,6 +65,13 @@ th {
     float: inline-end;
 }
 
+.weather_form{
+align-items: center;
+width: 50%;
+margin:auto;
+
+}
+
 #forcastContainer{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     align-items: center;
