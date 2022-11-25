@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'weatherapp',
     'loginapp',
     'registerapp',
+    'fivedaysweather',
 ]
 
 MIDDLEWARE = [
