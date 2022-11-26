@@ -15,8 +15,7 @@ def current_weatherView(request):
 
         # current weather 
         current = urllib.request.urlopen(
-            'http://api.openweathermap.org/data/2.5/weather?q=' + 
-            city +
+            'http://api.openweathermap.org/data/2.5/weather?q=' + city +
             '&appid=48a90ac42caa09f90dcaeee4096b9e53&units=imperial').read()
 
 
