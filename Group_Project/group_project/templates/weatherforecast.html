@@ -1,11 +1,12 @@
 {% load static %}
 <html lang="en">
-<head>
-    <title>Forecastt</title>
-     <link rel="stylesheet" style="text/css" href="{% static 'css/style.css'%}">
-</head>
+    <head>
+        <title>Forecastt</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
     <nav>
         <a style="margin: 20px" href="/homeapp/">Return Home</a>
+        <a style="margin: 20px" href="/homeapp/weather">Get Weather</a>
         {% if user.is_authenticated %}
             <a style="margin: 20px" href="/homeapp/todos">My To-Do List</a>
             <a style="float: right" href="{% url 'logout' %}">Logout</a>
@@ -27,51 +28,51 @@
         {% endif %}
     </div>
 
-<body>
- <form method="post">
-                {% csrf_token %}
-                <input type="text" name="city" placeholder="Search">
-              <button type="submit">Submit</button>
-            </form>
- {% if city_name %}
-    <div id="forcastContainer">
-        <div>
-            <h1 id="forcast_header">Five days forcast : City - {{city_name}}</h1>
-        </div>
+    <body>
+    <form method="post">
+                    {% csrf_token %}
+                    <input type="text" name="city" placeholder="Search">
+                <button type="submit">Submit</button>
+                </form>
+    {% if city_name %}
+        <div id="forcastContainer">
+            <div>
+                <h1 id="forcast_header">Five days forcast : City - {{city_name}}</h1>
+            </div>
 
-        <div id="dataContainer">
-            <div class="data">
-                <p>{{current_day}}</p>
-                <div><img src="http://openweathermap.org/img/w/{{icon1}}.png"></div>
-                <p>Max: {{temp_max1}}<sup> o</sup>F</p>
-                <p>Min: {{temp_min1}}<sup> o</sup>F</p>
-            </div>
-            <div class="data">
-                <p>{{day2}}</p>
-                <div><img src="http://openweathermap.org/img/w/{{icon2}}.png"></div>
-                <p>Max: {{temp_max2}}<sup> o</sup>F</p>
-                <p>Min: {{temp_min2}}<sup> o</sup>F</p>
-            </div>
-            <div class="data">
-                <p>{{day3}}</p>
-                <div><img src="http://openweathermap.org/img/w/{{icon3}}.png"></div>
-                <p>Max: {{temp_max3}}<sup> o</sup>F</p>
-                <p>Min: {{temp_min3}}<sup> o</sup>F</p>
-            </div>
-            <div class="data">
-                <p>{{day4}}</p>
-                <div><img src="http://openweathermap.org/img/w/{{icon4}}.png"></div>
-               <p>Max: {{temp_max4}}<sup> o</sup>F</p>
-                <p>Min: {{temp_min4}}<sup> o</sup>F</p>
-            </div>
-            <div class="data">
-                <p>{{day5}}</p>
-                <div><img src="http://openweathermap.org/img/w/{{icon5}}.png"></div>
-                <p>Max: {{temp_max5}}<sup> o</sup>F</p>
-                <p>Min: {{temp_min5}}<sup> o</sup>F</p>
+            <div id="dataContainer">
+                <div class="data">
+                    <p>{{current_day}}</p>
+                    <div><img src="http://openweathermap.org/img/w/{{icon1}}.png"></div>
+                    <p>Max: {{temp_max1}}<sup> o</sup>F</p>
+                    <p>Min: {{temp_min1}}<sup> o</sup>F</p>
+                </div>
+                <div class="data">
+                    <p>{{day2}}</p>
+                    <div><img src="http://openweathermap.org/img/w/{{icon2}}.png"></div>
+                    <p>Max: {{temp_max2}}<sup> o</sup>F</p>
+                    <p>Min: {{temp_min2}}<sup> o</sup>F</p>
+                </div>
+                <div class="data">
+                    <p>{{day3}}</p>
+                    <div><img src="http://openweathermap.org/img/w/{{icon3}}.png"></div>
+                    <p>Max: {{temp_max3}}<sup> o</sup>F</p>
+                    <p>Min: {{temp_min3}}<sup> o</sup>F</p>
+                </div>
+                <div class="data">
+                    <p>{{day4}}</p>
+                    <div><img src="http://openweathermap.org/img/w/{{icon4}}.png"></div>
+                <p>Max: {{temp_max4}}<sup> o</sup>F</p>
+                    <p>Min: {{temp_min4}}<sup> o</sup>F</p>
+                </div>
+                <div class="data">
+                    <p>{{day5}}</p>
+                    <div><img src="http://openweathermap.org/img/w/{{icon5}}.png"></div>
+                    <p>Max: {{temp_max5}}<sup> o</sup>F</p>
+                    <p>Min: {{temp_min5}}<sup> o</sup>F</p>
+                </div>
             </div>
         </div>
-    </div>
-  {% endif %}
-</body>
+    {% endif %}
+    </body>
 </html>

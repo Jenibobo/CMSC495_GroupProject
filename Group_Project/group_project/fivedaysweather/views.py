@@ -17,7 +17,7 @@ def forecast(request):
     if request.method == 'POST':
         city = request.POST['city']
 
-        current = urllib.request.urlopen('https://api.openweathermap.org/data/2.5/forecast?q='+city+'&APPID=3192803383f0bd308ae250f29d55a9a2').read()
+        current = urllib.request.urlopen('https://api.openweathermap.org/data/2.5/forecast?q='+city+'&APPID=3192803383f0bd308ae250f29d55a9a2&units=imperial').read()
         try:
             w_dataset = json.loads(current)
             data = {
