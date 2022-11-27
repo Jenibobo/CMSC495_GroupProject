@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'homeapp',
     'todoapp',
-    'weatherapp',
     'loginapp',
     'registerapp',
     'fivedaysweather',

@@ -9,14 +9,17 @@
     <nav>
       {% if user.is_authenticated %}
         <a style="margin: 20px" href="/homeapp/">Return Home</a>
-        <a style="margin: 20px" href="/homeapp/weather">Get Weather</a>
-        <a style="margin: 20px" href="/homeapp/forecast/">Weather Forecast</a>
+        <a style="margin: 20px" href="/homeapp/forecast">Get Weather</a>
         <a style="float: right" href="{% url 'logout' %}">Logout</a>
     </nav>
     <hr/>
     
     <body>
-      <h3>Welcome, {{ request.user.first_name }}!</h3>
+        {% if user.is_authenticated %}
+            <h3 id="user_greeting">Welcome, {{ request.user.first_name }}!</h3>
+            <br>
+        {% endif %}
+        
       <div class="containers" id="todo_container">
         <center>
             <h3> My To-Do's</h3>
@@ -25,17 +28,19 @@
                 <input type="text" name="content">
                 <input type="submit" value="Add Todo">
             </form> 
+        </center>
             <ul>
                 {% for i in all_items %} 
-                <li>{{i.content}}
+                <li>
                     <form action="deleteTodoItem/{{i.id}}/" method = "post">
                         {% csrf_token %}
-                        <input type="submit" value="Delete">
+                        <input id="delete_button" type="submit" value="X">
+                        {{i.content}}
                     </form>
                </li>
                 {% endfor %}
             </ul>  
-          </center>                  
+                            
         </div>
     {% else %}
     <P>Please log in</P>

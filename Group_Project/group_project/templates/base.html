@@ -8,8 +8,7 @@
     </head>
 
     <nav>
-        <a style="margin: 20px" href="/homeapp/weather/">Get Weather</a>
-        <a style="margin: 20px" href="/homeapp/forecast/">Weather Forecast</a>
+        <a style="margin: 20px" href="/homeapp/forecast">Get Weather</a>
         {% if user.is_authenticated %}
             <a style="margin: 20px" href="/homeapp/todos/"> My To-Do List</a>
             <a style="float: right" href="{% url 'logout' %}">Logout</a>
@@ -26,11 +25,10 @@
         <center><h2 style="color: whitesmoke"> Weather App </h2></center>
         <hr>
 
-        <div id="user_greeting">
-            {% if user.is_authenticated %}
-                <h2>Hello, {{user.first_name}}</h2>
-            {% endif %}
-        </div>
+        {% if user.is_authenticated %}
+            <h3 id="user_greeting">Welcome, {{ request.user.first_name }}!</h3>
+            <br>
+        {% endif %}
 
         <div id="about_container" class="containers">
             <h3 style="text-decoration: underline;"> About the App </h3>
