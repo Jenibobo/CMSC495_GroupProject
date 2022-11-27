@@ -22,7 +22,7 @@ from . import views
 urlpatterns = [
     path('', views.index),
     path('todos/', include('todoapp.urls')),
-    path('weather/', include('weatherapp.urls')),
+    path('weather/',include('fivedaysweather.urls')),
     path('login/', include('loginapp.urls')),
     path('register/', include('registerapp.urls')),
     path('forecast/', include('fivedaysweather.urls')),
