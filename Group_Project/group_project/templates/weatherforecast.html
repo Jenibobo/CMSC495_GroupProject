@@ -26,9 +26,9 @@
     {% endif %}
 
     <body>
-        <div class="containers">
+        <div class="containers" id="weather_search">
             <center>
-                <form method="post">
+                <form method="post" style="margin-bottom: 0;">
                     {% csrf_token %}
                     <b><label for="city_search"> Get Weather &emsp;</label></b>
                     <input type="text" id="city_search" name="city" placeholder="Search" required="True">

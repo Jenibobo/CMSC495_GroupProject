@@ -40,13 +40,16 @@ th {
 }
 
 #weather_container {
-    border: 1px solid whitesmoke;
-    border-radius: 5px;
-    margin: 25px;
+    margin-bottom: 85px;
 }
 
 #current_weather {
     margin: 25px;
+}
+
+#weather_search {
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
 }
 
 #weather_forecast {
@@ -99,16 +102,9 @@ ul li:hover {
     margin-left: 25px;
 }
 
-#forcastContainer {
-    border: 1px solid whitesmoke;
-    border-radius: 5px;
-    margin: 25px;
-}
-
 #dataContainer {
     margin: 5px;
     display: flex;
-    align-items: center;
     justify-content: center;
     padding: 5px;
 
