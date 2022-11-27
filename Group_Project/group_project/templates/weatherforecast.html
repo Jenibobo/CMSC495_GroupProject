@@ -31,14 +31,14 @@
                 <form method="post">
                     {% csrf_token %}
                     <b><label for="city_search"> Get Weather &emsp;</label></b>
-                    <input type="text" id="city_search" name="city" placeholder="Search">
-                        <button type="submit">Submit</button>
+                    <input type="text" id="city_search" name="city" placeholder="Search" required="True">
+                    <button type="submit">Submit</button>
                 </form>
             </center>
         </div>
         <div>
             <center>  
-                {% if current_condtions.name %}
+                {% if current_condtions %}
                     <div class="containers" id="weather_container">
                         <h2>Current Conditions for {{current_condtions.name}}</h2>
                         <br/>

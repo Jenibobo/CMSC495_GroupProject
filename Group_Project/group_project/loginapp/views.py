@@ -23,8 +23,4 @@ def loginView(request):
         form = AuthenticationForm()
     context = {'form': form}
     return render(request, 'login.html', context)
-
-# def logout_view(request):
-#     logout(request)
-#     messages.info(request, "Logged out successfully")
-#     return redirect(request, "base.html")
+    

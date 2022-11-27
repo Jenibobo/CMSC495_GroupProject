@@ -1,5 +1,6 @@
+from pyexpat.errors import messages
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 from . models import TodoListItem
@@ -16,12 +17,14 @@ def todoappView(request):
 
 def add_todoView(request):
     x = request.POST['content']
-    new_item = TodoListItem(content = x)
-    new_item.save()
-    return HttpResponseRedirect('/homeapp/todos/')
-
+    if not x:
+        return redirect('todo')
+    else:
+        new_item = TodoListItem(content = x)
+        new_item.save()
+        return redirect('todo')
 
 def deleteTodoView(request, i):
     y = TodoListItem.objects.get(id= i)
     y.delete()
-    return HttpResponseRedirect('/homeapp/todos/')
+    return redirect('todo')
