@@ -2,7 +2,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title> To-Do </title>
+        <meta charset="utf-8">
+        <title> My To Do's </title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon_ico/favicon-16x16.png' %}">
     </head>
         
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -19,7 +22,7 @@
             <h3 id="user_greeting">Welcome, {{ request.user.first_name }}!</h3>
             <br>
         {% endif %}
-        
+
       <div class="containers" id="todo_container">
         <center>
             <h3> My To-Do's</h3>
