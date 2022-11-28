@@ -24,6 +24,20 @@ th {
     padding-bottom: 5px;
 }
 
+nav {
+    background: lightgray;
+    padding: 10px 0 ;
+    color: black;
+}
+
+a {
+    color:black
+}
+
+a:hover {
+    color: whitesmoke;
+}
+
 #table_dates {
     margin-top: 30px;
     margin-bottom: 0;
@@ -59,12 +73,6 @@ th {
 }
 
 /* #news_container {} */
-
-
-#todo_container {
-    border: 1px solid whitesmoke;
-    border-radius: 5px;
-}
 
 ul li {
     /* cursor: pointer; */
