@@ -6,21 +6,20 @@
         <title> My To Do's </title>
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon_ico/favicon-16x16.png' %}">
-    </head>
         
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <nav>
-      {% if user.is_authenticated %}
-        <a style="margin: 20px" href="/homeapp/">Return Home</a>
-        <a style="margin: 20px" href="/homeapp/forecast">Get Weather</a>
-        <a style="float: right" href="{% url 'logout' %}">Logout</a>
-    </nav>
-    <hr/>
+        <center><h2 style="color: whitesmoke"> Weather App </h2></center>
+
+        <nav>
+            {% if user.is_authenticated %}
+              <a style="margin: 10px" href="/homeapp/">Return Home</a>
+              <a style="margin: 10px" href="/homeapp/forecast">Get Weather</a>
+              <a style="float: right; margin-right: 10PX;" href="{% url 'logout' %}">Logout</a>
+          </nav>
+    </head>
     
     <body>
         {% if user.is_authenticated %}
             <h3 id="user_greeting">Welcome, {{ request.user.first_name }}!</h3>
-            <br>
         {% endif %}
 
       <div class="containers" id="todo_container">
