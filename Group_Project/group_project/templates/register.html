@@ -14,6 +14,15 @@
         </nav>
     </head>
     <body>
+        {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <p div class="alert alert-warning" role="alert"> {{ error }} </div></p>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+
         <h3>Sign Up</h3>
         <form action="" method="POST">
             {% csrf_token %}
