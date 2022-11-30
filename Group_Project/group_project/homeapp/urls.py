@@ -26,4 +26,5 @@ urlpatterns = [
     path('login/', include('loginapp.urls')),
     path('register/', include('registerapp.urls')),
     path('forecast/', include('fivedaysweather.urls')),
+    path('newsapp/', include('newsapp.urls')),
 ]
