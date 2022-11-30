@@ -1,5 +1,6 @@
 from datetime import datetime
-from django.shortcuts import render
+from urllib.error import HTTPError
+from django.shortcuts import redirect, render
 from django.core.exceptions import SuspiciousOperation
 import urllib.request
 import datetime
@@ -17,16 +18,15 @@ def forecast(request):
     if request.method == 'POST':
         city = request.POST['city']
 
-        weather_forecast = urllib.request.urlopen(
-            'https://api.openweathermap.org/data/2.5/forecast?q=' + city +
-            '&APPID=3192803383f0bd308ae250f29d55a9a2&units=imperial').read()
-        current_conditions = urllib.request.urlopen(
-            'http://api.openweathermap.org/data/2.5/weather?q=' + city +
-            '&appid=48a90ac42caa09f90dcaeee4096b9e53&units=imperial').read()
+        weather_forecast_url = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city +'&APPID=3192803383f0bd308ae250f29d55a9a2&units=imperial'
+        current_conditions_url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=48a90ac42caa09f90dcaeee4096b9e53&units=imperial'
         
+    
+        weather_forecast = urllib.request.urlopen(weather_forecast_url)
+        current_conditions = urllib.request.urlopen(current_conditions_url)
         try:
             # Pulling current weather condtions
-            current_w_data = json.loads(current_conditions)
+            current_w_data = json.loads(current_conditions.read())
             current_data = {
                 "country_code": str(current_w_data['sys']['country']),
                 "cur_temp": str(current_w_data['main']['temp']) + u'\N{DEGREE SIGN}' + 'F',
@@ -37,7 +37,7 @@ def forecast(request):
             }
 
             # Pulling data for the 5-day forecast
-            w_dataset = json.loads(weather_forecast)
+            w_dataset = json.loads(weather_forecast.read())
             data = {
                 "city_name": w_dataset["city"]["name"],
                 'date': w_dataset['list'][0]["dt_txt"],
@@ -68,8 +68,8 @@ def forecast(request):
                 "icon5": w_dataset["list"][5]["weather"][0]["icon"],
             }
             data['current_condtions'] = current_data
-        except ValueError:
-            raise SuspiciousOperation('Invailid JSON')
+        except Exception as e:
+            print(e)
     else:
         data = {}
     return render(request, "weatherforecast.html", data)
