@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'loginapp',
     'registerapp',
     'fivedaysweather',
+    'newsapp'
 ]
 
 MIDDLEWARE = [

@@ -65,6 +65,8 @@ a:hover {
 #about_container {
     color: whitesmoke;
     padding: 20px;
+    height: 150px;
+    float: inline-end;
 }
 
 #weather_container {
@@ -86,22 +88,39 @@ a:hover {
     margin: 25px;
 }
 
-/* #news_container {
+#news_container {
     color: black;
-    width: 800px;
+    width: 650px;
     border-radius: 5px;
     border: lightgray 1px solid;
     background: lightgray;
     padding: 15px;
-} */
+    display: inline-block;
+    float: inline-start;
+    margin-right: 15px;
+}
 
-/* .article_content {
+.article_content {
     color: black;
     text-align: left;
-} */
+}
+
+#additional_news_container {
+    display: inline-block;
+    color: black;
+    width: 200px;
+    border-radius: 5px;
+    border: lightgray 1px solid;
+    background: lightgray;
+    padding: 15px;
+    position: absolute;
+}
+
+#newslinks {
+    display: grid;
+}
 
 ul li {
-    /* cursor: pointer; */
     position: relative;
     padding: 20px;
     margin-right: 10px;
