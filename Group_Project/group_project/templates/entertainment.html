@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title> News & Weather Home</title>
+        <title> Entertainment News</title>
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon_ico/favicon-16x16.png' %}">
 
@@ -30,21 +30,21 @@
             <br>
         {% endif %}
         <div id="news_container">
-            <b><h2 style="text-decoration: underline">News in Climate</h2></b>
+            <b><h2 style="text-decoration: underline">News in Entertainment</h2></b>
             <br>
             <div class="rows">
                 <div class="column is-offset-16 is-10">
-                    {% for news_title, news_description, news_url, news_img in mylist %}
+                    {% for Entertainment_title, Entertainment_desc, Entertainment_url, Entertainment_img in mylist %}
                     <div class="article_box">
                         <article>
                             <div class="article_content">
                                 <p>
-                                    <b><p class="title">{{ news_title }}</p></b>
-                                    <img width="250px" height="100px" src="{{ news_img }}" alt="">
+                                    <b><p class="title">{{ Entertainment_title }}</p></b>
+                                    <img width="250px" height="100px" src="{{ Entertainment_img }}" alt="">
                                     <br>
-                                    <span class="subtitle">{{ news_description }}</span>
+                                    <span class="subtitle">{{ Entertainment_desc }}</span>
                                     <br>
-                                    <a href="{{news_url}}">Click here to find out more</a>
+                                    <a href="{{Entertainment_url}}">Click here to find out more</a>
                                     <hr>
                                 </p>
                             </div>
@@ -57,27 +57,13 @@
         <div id="additional_news_container">
             <b><h3 style="text-decoration: underline">More in News</h3></b>
             <div id="newslinks">
-                <a href="newsapp/entertainment">Entertainment</a>
-                <a href="newsapp/sports">Sports</a>
-                <a href="newsapp/technology">Technology</a>
-                <a href="newsapp/science">Science</a>
-                <a href="newsapp/health">Health</a>
-                <a href="newsapp/business">Business</a>
+                <a href="/homeapp/newsapp/sports">Sports</a>
+                <a href="/homeapp/">Climate</a>
+                <a href="/homeapp/newsapp/technology">Technology</a>
+                <a href="/homeapp/newsapp/science">Science</a>
+                <a href="/homeapp/newsapp/health">Health</a>
+                <a href="/homeapp/newsapp/business">Business</a>
             </div>
         </div>
-        <div id="about_container" class="containers">
-            <h3 style="text-decoration: underline;"> About the App </h3>
-            <p>
-                In today's world, the climate has become a big issue for human beings; 
-                because of an adverse climate change, the weather keeps changing constantly. 
-                Too hot or cold weather becomes an obstacle for people to lead their daily 
-                routines. Therefore, people must be able to check the weather before leaving 
-                their homes. To address people's concerns about the weather, this group 
-                created a weather app to show updated weather on time. The weather app enables
-                users to search for weather information based on cities worldwide and returns 
-                the necessary weather information for those cities.  
-            </p>
-        </div>
-
     </body>
 </html>
