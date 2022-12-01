@@ -90,7 +90,7 @@ a:hover {
 
 #news_container {
     color: black;
-    width: 650px;
+    width: 60%;
     border-radius: 5px;
     border: lightgray 1px solid;
     background: lightgray;
@@ -108,7 +108,7 @@ a:hover {
 #additional_news_container {
     display: inline-block;
     color: black;
-    width: 200px;
+    width: 20%;
     border-radius: 5px;
     border: lightgray 1px solid;
     background: lightgray;
