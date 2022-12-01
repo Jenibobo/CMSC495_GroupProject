@@ -1,26 +1,24 @@
-from django.http import HttpResponse, HttpResponseRedirect
+
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib import auth
+from .forms import LoginForm
 
 
 # Create your views here.
 
 def loginView(request):
     if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            form = login(request, user)
-            messages.success(request, f'Welcome {username}!')
-        form = AuthenticationForm(data=request.POST)
-        return redirect('todo')
+        form = LoginForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('todo')
     else:
-        messages.info(request,f'Account does not exist')
-        form = AuthenticationForm()
+        form = LoginForm()
     context = {'form': form}
     return render(request, 'login.html', context)
-    
+
+# def logout_view(request):
+#     logout(request)
+#     messages.info(request, "Logged out successfully")
+
