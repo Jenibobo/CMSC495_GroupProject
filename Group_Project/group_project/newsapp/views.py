@@ -1,193 +1,121 @@
 from django.shortcuts import render
-
-# Create your views here.
-import json
-
-from django.conf import settings
-from django.contrib import messages
-from django.contrib.auth.models import User
-from django.http import HttpResponse
-# Imports for Web Push Notifications
-from django.http.response import HttpResponse, JsonResponse
-from django.shortcuts import get_object_or_404, redirect, render
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_GET, require_POST
-# Importing News API
-from newsapi import newsapi_client
-
-from .forms import UserRegisterForm
+from newsapi.newsapi_client import NewsApiClient
 
 
 # Create your views here.
-def Home(request):
-    newsapi = newsapi_client(api_key="492204b5fab24074b7e237e955eb3218")
-    top = newsapi.get_top_headlines(sources="techcrunch")
 
-    l = top["articles"]
-    desc = []
-    news = []
-    img = []
-    url = []
+# global vars
+newsapi = NewsApiClient(api_key="492204b5fab24074b7e237e955eb3218")
 
-    for i in range(len(l)):
-        f = l[i]
-        news.append(f["title"])
-        desc.append(f["description"])
-        img.append(f["urlToImage"])
-        url.append(f["url"])
-    mylist = zip(news, desc, img, url)
-    return render(request, "newsapp/home.html", context={"mylist": mylist})
+def Sports(request):
+    top_sports= newsapi.get_top_headlines(category="sports")
+
+    s_articles = top_sports["articles"]
+    sport_desc = []
+    sport_title = []
+    sport_img = []
+    sport_url = []
+
+    for i in range(len(s_articles)):
+        f = s_articles[i]
+        sport_title.append(f["title"])
+        sport_desc.append(f["description"])
+        sport_url.append(f["urlToImage"])
+        sport_img.append(f["url"])
+    mylist = zip(sport_title, sport_desc, sport_img, sport_url)
+    return render(request, "sports.html", context={"mylist": mylist})
 
 
 def Technology(request):
-    newsapi = newsapi_client(api_key="492204b5fab24074b7e237e955eb3218")
-    top = newsapi.get_top_headlines(category="technology", country="in")
+    top_tech = newsapi.get_top_headlines(category="technology")
 
-    l = top["articles"]
-    desc = []
-    news = []
-    img = []
-    url = []
+    t_articles = top_tech["articles"]
+    tech_desc = []
+    tech_title = []
+    tech_img = []
+    tech_url = []
 
-    for i in range(len(l)):
-        f = l[i]
-        news.append(f["title"])
-        desc.append(f["description"])
-        img.append(f["urlToImage"])
-        url.append(f["url"])
-    mylist = zip(news, desc, img, url)
-    return render(request, "newsapp/technology.html", context={"mylist": mylist})
-
-
-def Health(request):
-    newsapi = newsapi_client(api_key="492204b5fab24074b7e237e955eb3218")
-    top = newsapi.get_top_headlines(category="health", country="in")
-
-    l = top["articles"]
-    desc = []
-    news = []
-    img = []
-    url = []
-
-    for i in range(len(l)):
-        f = l[i]
-        news.append(f["title"])
-        desc.append(f["description"])
-        img.append(f["urlToImage"])
-        url.append(f["url"])
-    mylist = zip(news, desc, img, url)
-    return render(request, "newsapp/health.html", context={"mylist": mylist})
-
-
-def Science(request):
-    newsapi = newsapi_client(api_key="492204b5fab24074b7e237e955eb3218")
-    top = newsapi.get_top_headlines(category="science", country="in")
-
-    l = top["articles"]
-    desc = []
-    news = []
-    img = []
-    url = []
-
-    for i in range(len(l)):
-        f = l[i]
-        news.append(f["title"])
-        desc.append(f["description"])
-        img.append(f["urlToImage"])
-        url.append(f["url"])
-    mylist = zip(news, desc, img, url)
-    return render(request, "newsapp/science.html", context={"mylist": mylist})
-
-
-def ContactUs(request):
-    return render(request, "newsapp/contact_us.html")
-
-
-def Feedback(request):
-    return render(request, "newsapp/feedback.html")
-
-
-def Forget(request):
-    return render(request, "newsapp/forget.html")
-
-
-def Sports(request):
-    newsapi = newsapi_client(api_key="492204b5fab24074b7e237e955eb3218")
-    top = newsapi.get_top_headlines(category="sports", country="in")
-
-    l = top["articles"]
-    desc = []
-    news = []
-    img = []
-    url = []
-
-    for i in range(len(l)):
-        f = l[i]
-        news.append(f["title"])
-        desc.append(f["description"])
-        img.append(f["urlToImage"])
-        url.append(f["url"])
-    mylist = zip(news, desc, img, url)
-    return render(request, "newsapp/sports.html", context={"mylist": mylist})
+    for i in range(len(t_articles)):
+        f = t_articles[i]
+        tech_title.append(f["title"])
+        tech_desc.append(f["description"])
+        tech_url.append(f["urlToImage"])
+        tech_img.append(f["url"])
+    mylist = zip(tech_title, tech_desc, tech_img, tech_url)
+    return render(request, "technology.html", context={"mylist": mylist})
 
 
 def Entertainment(request):
-    newsapi = newsapi_client(api_key="492204b5fab24074b7e237e955eb3218")
-    top = newsapi.get_top_headlines(category="entertainment", country="in")
+    top_entertainment = newsapi.get_top_headlines(category="entertainment")
 
-    l = top["articles"]
-    desc = []
-    news = []
-    img = []
-    url = []
+    e_articles = top_entertainment["articles"]
+    Entertainment_desc = []
+    Entertainment_title = []
+    Entertainment_img = []
+    Entertainment_url = []
 
-    for i in range(len(l)):
-        f = l[i]
-        news.append(f["title"])
-        desc.append(f["description"])
-        img.append(f["urlToImage"])
-        url.append(f["url"])
-    mylist = zip(news, desc, img, url)
-    return render(request, "newsapp/entertainment.html", context={"mylist": mylist})
+    for i in range(len(e_articles)):
+        f = e_articles[i]
+        Entertainment_title.append(f["title"])
+        Entertainment_desc.append(f["description"])
+        Entertainment_url.append(f["urlToImage"])
+        Entertainment_img.append(f["url"])
+    mylist = zip(Entertainment_title, Entertainment_desc, Entertainment_img, Entertainment_url)
+    return render(request, "entertainment.html", context={"mylist": mylist})
+
+
+def Health(request):
+    top_health = newsapi.get_top_headlines(category="health")
+
+    h_articles = top_health["articles"]
+    health_desc = []
+    health_title = []
+    health_img = []
+    health_url = []
+
+    for i in range(len(h_articles)):
+        f = h_articles[i]
+        health_title.append(f["title"])
+        health_desc.append(f["description"])
+        health_url.append(f["urlToImage"])
+        health_img.append(f["url"])
+    mylist = zip(health_title, health_desc, health_img, health_url)
+    return render(request, "health.html", context={"mylist": mylist})
+
+
+def Science(request):
+    top_sci = newsapi.get_top_headlines(category="science")
+
+    s_articles = top_sci["articles"]
+    sci_desc = []
+    sci_title = []
+    sci_img = []
+    sci_url = []
+
+    for i in range(len(s_articles)):
+        f = s_articles[i]
+        sci_title.append(f["title"])
+        sci_desc.append(f["description"])
+        sci_url.append(f["urlToImage"])
+        sci_img.append(f["url"])
+    mylist = zip(sci_title, sci_desc, sci_img, sci_url)
+    return render(request, "science.html", context={"mylist": mylist})
 
 
 def Business(request):
-    newsapi = newsapi_client(api_key="492204b5fab24074b7e237e955eb3218")
-    top = newsapi.get_top_headlines(category="business", country="in")
+    top_bus = newsapi.get_top_headlines(category="business")
 
-    l = top["articles"]
-    desc = []
-    news = []
-    img = []
-    url = []
+    b_articles = top_bus["articles"]
+    bus_desc = []
+    bus_title = []
+    bus_img = []
+    bus_url = []
 
-    for i in range(len(l)):
-        f = l[i]
-        news.append(f["title"])
-        desc.append(f["description"])
-        img.append(f["urlToImage"])
-        url.append(f["url"])
-    mylist = zip(news, desc, img, url)
-    return render(request, "newsapp/business.html", context={"mylist": mylist})
-
-
-# Test view for Materialized Home Page - Feel free to delete it
-def test(request):
-    return render(request, "newsapp/test.html")
-
-
-def register(request):
-    form_class = UserRegisterForm
-    form = form_class(request.POST or None)
-    if request.method == "POST":
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get("username")
-            messages.success(
-                request,
-                f"Account successfully created for { username }. You can now login",
-            )
-            return redirect("login")
-    else:
-        form = UserRegisterForm()
-    return render(request, "newsapp/register.html", {"form": form})
+    for i in range(len(b_articles)):
+        f = b_articles[i]
+        bus_title.append(f["title"])
+        bus_desc.append(f["description"])
+        bus_url.append(f["urlToImage"])
+        bus_img.append(f["url"])
+    mylist = zip(bus_title, bus_desc, bus_img, bus_url)
+    return render(request, "business.html", context={"mylist": mylist})
