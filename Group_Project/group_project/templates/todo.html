@@ -25,7 +25,7 @@
       <div class="containers" id="todo_container">
         <center>
             <h3> My To-Do's</h3>
-            <form action="addTodoItem/" method="post">
+            <form action="addTodo/" method="post">
                 {% csrf_token %}
                 <input type="text" name="content" required="True">
                 <input type="submit" value="Add Todo">
@@ -34,7 +34,7 @@
             <ul>
                 {% for i in all_items %} 
                 <li>
-                    <form action="deleteTodoItem/{{i.id}}/" method = "post">
+                    <form action="deleteTodo/{{i.id}}/" method = "post">
                         {% csrf_token %}
                         <input id="delete_button" type="submit" value="X">
                         {{i.content}}
